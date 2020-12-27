@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我们的爱情记录</title>
+    <style>
+  .process_gif{  /*显示动态barh*/
+            background-image:url("./image/process.gif");
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin:200px auto;
+            width: 350px;
+            height: 220px;
+            position: relative;
+   z-index: 1;
+        }
+  .show_txt{  /*显示文字*/
+            margin:0 auto;
+            background-color: azure;
+            width: 560px;
+            height: 200px;
+            position: relative;
+   text-align: center;
+   padding-top: 10px;
+   z-index: 1;
+        }
+</style>
+</head>
+<body>
+<div class="process_gif" id="process"></div>
+ <div class="show_txt" id="content_1"></div>
+
+<script type="text/javascript">
+ /// 显示文字功能 ----------------------------------
+ let divTyping = document.getElementById('content_1'); //通过id获取div节点
+ let a = 0;
+ timer = 0;
+ str = "我们已经相遇 484 天<br>告白后过了 270 天<br>First Kiss 至今 122 天<br> 87 天前你陪我过了十九岁生日<br>我依然爱你";
+ function typing () {
+  if (a <= str.length) { // 从第一个字开始逐个打印
+     divTyping.innerHTML = str.slice(0, a++) + '_';
+   timer = setTimeout(typing, 300); // 设置打印时间间隔
+  }
+  else {
+   divTyping.innerHTML = str; //结束打字,移除 _ 光标
+     clearTimeout(timer);
+  }
+ }
+
+ window.onload=function(){
+   typing();
+   setTimeout(function(){
+             thisdiv = document.getElementById("process");
+    thisdiv.style.backgroundImage = "url('./image/process_stop.png')"; //将div背景图替换
+        },50000); // 单位是毫秒，根据动态图的时长来设置
+ }
+</script>
+</body>
+</html>
